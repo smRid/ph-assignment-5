@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Github Issue Tracker</title>
+    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon"/>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css"/>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="./styles.css" />
+
+
+  </head>
+  <body class="flex justify-center items-center min-h-screen">
+    <div
+      class="flex flex-col w-[456px] bg-white container p-8 space-y-6 mx-auto"
+    >
+      <section id="header" class="flex flex-col items-center">
+        <img src="../assets/github-logo.png" alt="Logo" class="mx-auto mb-6"/>
+        <h1 class="text-2xl font-semibold text-[#1F2937] mb-1">Github Issues Tracker</h1>
+        <p class="text-[#64748B] text-base font-normal">Sign in to manage your issues</p>
+      </section>
+
+      <section id="credentials-form">
+        <div id="form" class="flex flex-col">
+          <label class="font-medium mb-2" for="Username">Username </label>
+          <input id="userName" class="text-[##64748B] rounded-lg p-4 border-[#E4E4E7] mb-1.5" type="text" placeholder="Enter Username"/>
+          <p class="text-sm text-[#4A00FF] mb-4">Default: admin</p>
+
+          <label class="font-medium mb-2" for="Password">Password </label>
+          <input id="passWord" class="text-[##64748B] rounded-lg p-4 border-[#E4E4E7] mb-1.5" type="password" placeholder="Enter Password" maxlength="8"/>
+          <p class="text-sm text-[#4A00FF]">Default: admin123</p>
+        </div>
+      </section>
+      <div class="flex flex-col w-full">
+        <div class="card rounded-box grid grow place-items-center">
+          <button id="signIn" class="btn bg-[#4A00FF] text-white rounded-lg min-w-full">Sign In</button>
+        </div>
+        <div class="divider">OR</div>
+        <div class="card rounded-box grid grow place-items-center">
+          <p class="text-sm text-[#64748B] mb-2">Demo Credentials</p>
+          <div class="p-6 bg-[#F8FAFC] w-full text-center">
+            <p><b>Username:</b> admin</p>
+            <p><b>Password:</b> admin123</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../scripts/login.js"></script>
+  </body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github Issue Tracker</title>
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css"/>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./styles.css" />
+
+</head>
+<body>
+    <header class="bg-white mb-[60px]">
+      <div class="navbar bg-base-100 px-4 shadow-sm md:px-10 lg:px-20">
+        <div class="flex-1">
+
+          <!-- Mobile dropdown -->
+          <div class="dropdown md:hidden">
+            <div role="button" tabindex="0" class="btn p-2 btn-ghost">
+              <i class="fa-brands fa-github text-2xl"></i>
+            </div>
+
+            <ul
+              tabindex="0"
+              class="dropdown-content menu bg-base-100/70 rounded-box z-10 mt-3 w-52 p-2 shadow"
+            >
+              <li class="px-2 py-1 text-lg text-center font-semibold">GitHub Issues Tracker</li>
+
+              <li>
+                <a class="flex justify-center" href="./index.html">
+                  <i class="text-center fa-solid fa-arrow-right-from-bracket"></i>
+                  Log Out
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <a class="btn text-xl btn-ghost hidden md:inline-flex">
+            <i class="fa-brands fa-github"></i>
+            GitHub Issues Tracker
+          </a>
+        </div>
+
+        <!-- Search bar -->
+        <div class="flex items-center gap-2">
+          <label class="input">
+            <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+              </g>
+            </svg>
+
+            <input id="searchInput" type="search" placeholder="Search issues..."/>
+          </label>
+
+          <button class="btn bg-[#4A00FF] text-white" id="searchBtn">Search</button>
+          <button class="btn bg-[#4A00FF] text-white" id="newIssueBtn"> <i class="fa-solid fa-plus"></i> New Issue</button>
+
+          <!-- Logout Button -->
+          <a class="btn hidden md:flex" href="./index.html" id="logout">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            Log Out
+          </a>
+        </div>
+      </div>
+    </header>
+
+
+     <main class="bg-[##F8FAFC] mx-auto min-h-screen max-w-[75%]">
+      <section id="tab-container" class="p-6 flex gap-2 bg-white mb-4 rounded-lg">
+        <button onclick="showTab('all-tab')" id="all-tab" class="btn tab-btn w-[120px] h-10">
+          All
+        </button>
+        <button onclick="showTab('open-tab')" id="open-tab" class="btn tab-btn w-[120px] h-10">
+          Open
+        </button>
+        <button onclick="showTab('close-tab')" id="close-tab"
+          class="btn tab-btn w-[120px] h-10"
+        >
+          Closed
+        </button>
+      </section>
+      <!--  Issue counter Tracker  -->
+      <section id="issue-container" class="rounded-lg">
+        <div
+          class="flex justify-between items-center bg-white p-6 border-b border-[#E4E4E7]"
+        >
+          <div class="flex gap-2 items-center">
+            <div
+              class="w-[50px] h-[50px] flex items-center justify-center rounded-full bg-[#ECE4FF]"
+            >
+              <img class="w-8 h-8" src="../assets/Aperture.png" alt="" />
+            </div>
+            <div>
+              <h3 class="mb-[3px] font-semibold text-xl">
+                <span id="total-issues">50</span> Issues
+              </h3>
+              <p>Track and manage your project issues</p>
+            </div>
+          </div>
+          <!-- open and closed issues category -->
+          <div class="flex gap-4">
+            <div id="open-badge" class="flex items-center gap-2">
+              <div class="rounded-full w-3 h-3 bg-[#00A96E]"></div>
+              Open
+            </div>
+            <div id="closed-badge" class="flex items-center gap-2">
+              <div class="rounded-full w-3 h-3 bg-[#A855F7]"></div>
+              Closed
+            </div>
+          </div>
+        </div>
+        <!-- All issues container -->
+        <div id="spinner" class="hidden">
+          <section class="min-h-screen flex justify-center items-center">
+            <span
+              class="loading loading-spinner loading-xl text-primary"
+            ></span>
+          </section>
+        </div>
+        <div
+          id="card-container"
+          class="bg-[#FBFBFB] p-6 mb-[60px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"
+        >
+        </div>
+      </section>
+      <section>
+        <dialog id="issue-modal" class="modal modal-bottom sm:modal-middle">
+        </dialog>
+      </section>
+    </main>
+</body>
+</html>
