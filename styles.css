@@ -5,3 +5,19 @@
 body {
     background-color: #F8FAFC;
 }
+
+/* Open issue  */
+.issue-box.open {
+    border-top: 4px solid #00A96E;
+}
+
+/* Closed issue */
+.issue-box.closed {
+    border-top: 4px solid #A855F7;
+}
+
+/* Active filter button */
+.filter-btn.active-tab {
+    background-color: #4A00FF;
+    color: white;
+}

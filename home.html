@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Github Issue Tracker</title>
+    <title>Dashboard - Github Issue Tracker</title>
     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon"/>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -65,11 +65,11 @@
               </g>
             </svg>
 
-            <input id="searchInput" type="search" placeholder="Search issues..."/>
+            <input id="search-field" type="search" placeholder="Search issues..."/>
           </label>
 
-          <button class="btn bg-[#4A00FF] text-white" id="searchBtn">Search</button>
-          <button class="btn bg-[#4A00FF] text-white" id="newIssueBtn"> <i class="fa-solid fa-plus"></i> New Issue</button>
+          <button class="btn bg-[#4A00FF] text-white" id="search-button">Search</button>
+          <!-- <button class="btn bg-[#4A00FF] text-white" id="newIssueBtn"> <i class="fa-solid fa-plus"></i> New Issue</button> -->
 
           <!-- Logout Button -->
           <a class="btn hidden md:flex" href="./index.html" id="logout">
@@ -83,14 +83,14 @@
 
      <main class="bg-[##F8FAFC] mx-auto min-h-screen max-w-[75%]">
       <section id="tab-container" class="p-6 flex gap-2 bg-white mb-4 rounded-lg">
-        <button onclick="showTab('all-tab')" id="all-tab" class="btn tab-btn w-[120px] h-10">
+        <button onclick="showTab('all-tab')" id="all-tab" class="btn filter-btn w-[120px] h-10">
           All
         </button>
-        <button onclick="showTab('open-tab')" id="open-tab" class="btn tab-btn w-[120px] h-10">
+        <button onclick="showTab('open-tab')" id="open-tab" class="btn filter-btn w-[120px] h-10">
           Open
         </button>
         <button onclick="showTab('close-tab')" id="close-tab"
-          class="btn tab-btn w-[120px] h-10"
+          class="btn filter-btn w-[120px] h-10"
         >
           Closed
         </button>
@@ -108,7 +108,7 @@
             </div>
             <div>
               <h3 class="mb-[3px] font-semibold text-xl">
-                <span id="total-issues">50</span> Issues
+                <span id="issues-count">50</span> Issues
               </h3>
               <p>Track and manage your project issues</p>
             </div>
@@ -126,7 +126,7 @@
           </div>
         </div>
         <!-- All issues container -->
-        <div id="spinner" class="hidden">
+        <div id="loading-spinner" class="hidden">
           <section class="min-h-screen flex justify-center items-center">
             <span
               class="loading loading-spinner loading-xl text-primary"
@@ -134,7 +134,7 @@
           </section>
         </div>
         <div
-          id="card-container"
+          id="issues-grid"
           class="bg-[#FBFBFB] p-6 mb-[60px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"
         >
         </div>
@@ -144,5 +144,8 @@
         </dialog>
       </section>
     </main>
+
+    <script src="./scripts/counter.js"></script>
+    <script src="./scripts/issuecard.js"></script>
 </body>
 </html>
