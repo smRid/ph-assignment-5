@@ -52,7 +52,7 @@ const displayIssues = (issues) => {
     issueCard.innerHTML = `
         <div class="card-section flex flex-col gap-3 p-4 flex-1">
             <div class="card-top flex items-center justify-between w-full">
-                <img src="../assets/${issue.status == "open" ? "Open-Status.png" : "Closed-Status.png"}" alt="${issue.status}">
+                <img src="./assets/${issue.status == "open" ? "Open-Status.png" : "Closed-Status.png"}" alt="${issue.status}">
                 <div class="badge badge-soft rounded-[100px] text-sm ${issue.priority == "high" ? "badge-error text-[#EF4444] bg-[#FEECEC]" : issue.priority == "medium" ? "badge-warning text-[#F59E0B] bg-[#FFF6D1]" : "badge-neutral text-[#9CA3AF]"}">
                 ${issue.priority.toUpperCase()} </div>
             </div>
