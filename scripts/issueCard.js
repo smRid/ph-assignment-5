@@ -41,6 +41,7 @@ const displayIssues = (issues) => {
       "border",
       "border-[#E4E4E7]",
       "shadow-sm",
+      "cursor-pointer",
     );
     if (issue.status == "open") {
       issueCard.classList.add("open");
@@ -50,7 +51,7 @@ const displayIssues = (issues) => {
     issueCard.setAttribute("id", issue.id);
 
     issueCard.innerHTML = `
-        <div class="immediate-child flex flex-col gap-3 p-4 flex-[80%]">
+        <div class="immediate-child flex flex-col gap-3 p-4 flex-[80%] cursor-pointer">
             <div class="header flex items-center justify-between">
                 <img src="./assets/${issue.status == "open" ? "Open-Status.png" : "Closed-Status.png"}" alt="${issue.status}">
                 <div class="badge badge-soft rounded-[100px] text-sm ${issue.priority == "high" ? "badge-error text-[#EF4444] bg-[#FEECEC]" : issue.priority == "medium" ? "badge-warning text-[#F59E0B] bg-[#FFF6D1]" : "badge-neutral text-[#9CA3AF]"}">
