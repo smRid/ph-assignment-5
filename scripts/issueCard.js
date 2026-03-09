@@ -24,7 +24,7 @@ const createElements = (array) => {
   return htmlElements.join(" ");
 };
 
-// Issue cards
+// Issue cards display
 const displayIssues = (issues) => {
   const parent = document.getElementById("issues-grid");
   parent.innerHTML = "";
@@ -50,24 +50,24 @@ const displayIssues = (issues) => {
     issueCard.setAttribute("id", issue.id);
 
     issueCard.innerHTML = `
-        <div class="card-section flex flex-col gap-3 p-4 flex-1">
-            <div class="card-top flex items-center justify-between w-full">
+        <div class="immediate-child flex flex-col gap-3 p-4 flex-[80%]">
+            <div class="header flex items-center justify-between">
                 <img src="./assets/${issue.status == "open" ? "Open-Status.png" : "Closed-Status.png"}" alt="${issue.status}">
                 <div class="badge badge-soft rounded-[100px] text-sm ${issue.priority == "high" ? "badge-error text-[#EF4444] bg-[#FEECEC]" : issue.priority == "medium" ? "badge-warning text-[#F59E0B] bg-[#FFF6D1]" : "badge-neutral text-[#9CA3AF]"}">
                 ${issue.priority.toUpperCase()} </div>
             </div>
-            <div class="card-body flex flex-col gap-1">
-                <h3 class="text-md font-semibold m-0 line-clamp-2">${issue.title} </h3>
-                <p class="text-sm text-[#64748B] m-0 line-clamp-2">${issue.description} </p>
+            <div class="text">
+                <h3 class="text-md font-semibold">${issue.title} </h3>
+                <p class="text-sm font-regular text-[#64748B]">${issue.description} </p>
             </div>
-            <div class="tag-list flex flex-wrap gap-1">
+            <div class="labels flex flex-wrap gap-1">
                 ${createElements(issue.labels)}
             </div>
         </div>
-        <div class="card-section p-4 text-[#64748B] text-xs border-t border-[#E4E4E7] mt-auto">
-            <div class="card-footer flex flex-col gap-1">
-                <p class="m-0" id="issue-author-id">#${issue.id} by ${issue.author}</p>
-                <p class="m-0" id="issue-date">${new Date(issue.createdAt).toLocaleDateString("en-US")}</p>
+        <div class="immediate-child p-4 text-[#64748B] text-xs border-t border-[#E4E4E7]">
+            <div class="footer w-[100%] h-[100%] flex flex-col gap-2">
+                <p id="id" class="mb-2">#${issue.id} by ${issue.author}</p>
+                <p id="date">${new Date(issue.createdAt).toLocaleDateString("en-US")}</p>
             </div>
         </div>
         `;
@@ -95,9 +95,8 @@ searchBtn.addEventListener("click", function () {
     });
 });
 
-// Filter tabs (All, Open, Closed)
+// Filter tabs
 function showTab(tabId) {
-  // Remove active class from all filter buttons
   const allBtns = document.querySelectorAll(".filter-btn");
   for (let i = 0; i < allBtns.length; i++) {
     allBtns[i].classList.remove("active-tab");
@@ -129,5 +128,5 @@ function showTab(tabId) {
   }
 }
 
-// Set "All" tab as active by default
+// Set All tab as active by default
 document.getElementById("all-tab").classList.add("active-tab");
