@@ -2,8 +2,14 @@
 function calculateCount() {
   const count = document.getElementById("issues-count");
   const parent = document.getElementById("issues-grid");
-
-  count.innerText = parent.children.length;
+  const allCards = parent.querySelectorAll(".issue-box");
+  let visibleCount = 0;
+  for (let i = 0; i < allCards.length; i++) {
+    if (allCards[i].style.display !== "none") {
+      visibleCount++;
+    }
+  }
+  count.innerText = visibleCount;
 }
 
 calculateCount();

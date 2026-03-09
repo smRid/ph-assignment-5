@@ -127,6 +127,7 @@ function showTab(tabId) {
       }
     }
   }
+  calculateCount();
 }
 
 // Set All tab as active by default
